@@ -6,3 +6,15 @@
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
+
+
+
+restdata:
+    type:     rest
+    resource: Acme\DemoBundle\Controller\RestController
+    
+    
+rest_client:
+    resource: Acme\DemoBundle\Controller\RestClientController
+    type:     annotation
+    prefix:   /    
