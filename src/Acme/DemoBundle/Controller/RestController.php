@@ -44,6 +44,7 @@ class RestController extends FOSRestController
     
     public function postFilesAction(Request $request)
     {
+      
       if ('POST' === $request->getMethod()) {;
         $view = View::create()
           ->setStatusCode(200)
@@ -55,4 +56,22 @@ class RestController extends FOSRestController
         return new Response ('nie mam posta');
       }
     } // "post_files"    [POST] /files
+    
+    public function putFilesAction(Request $request)
+    {
+      //echo file_get_contents("php://input"); //tutaj powinna byc tresc pliku
+      //przykladowe uzycie z linii komend:
+      //curl -X PUT --header "Content-Type: application/octet-stream" --data-binary "@/home/mstrzelczyk/testowy.txt" -v http://192.168.103.55/mstrzelczyk/resttest/web/files
+      //w pliku /tmp/put.txt bedzie tresc wyslanego pliku
+      $stream = fopen('php://input', "r");
+      file_put_contents("/tmp/put.txt", stream_get_contents($stream));
+      if ('PUT' === $request->getMethod()) {        
+        $view = View::create()
+          ->setStatusCode(200)
+          ->setData("Zapisalem (chyba) sobie plik");
+        return $this->get('fos_rest.view_handler')->handle($view);
+      } else {
+        return new Response ('to nie byl PUT');
+      }
+    } // "put_files"      [PUT] /files
 }
