@@ -71,7 +71,7 @@ class RestClientController extends Controller
     //print_r($_SERVER);
     //die();
     $post = array(
-        "Resource"=>"@/home/mstrzelczyk/NMS_INT_2.zip",
+        "Resource"=>"@/home/mstrzelczyk/testowy.zip",
     );
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post); 
     return new Response(curl_exec($ch));

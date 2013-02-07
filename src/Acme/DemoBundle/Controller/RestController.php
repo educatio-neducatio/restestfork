@@ -48,6 +48,8 @@ class RestController extends FOSRestController
         $view = View::create()
           ->setStatusCode(200)
           ->setData($_FILES);
+        // trzeba zanim bedzie handle przekopiowac gdzies uploadniety plik bo potem znika
+        // copy($_FILES['Resource']['tmp_name'], '/tmp/target.zip');
         return $this->get('fos_rest.view_handler')->handle($view);
       } else {
         return new Response ('nie mam posta');
